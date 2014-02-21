@@ -1,4 +1,4 @@
 KernelDev
 =========
 
-linux kernel dev
+linux kernel development
