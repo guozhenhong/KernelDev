@@ -1,25 +1,23 @@
-cmd_/home/gzh/workspace/kernel_dev/majorDevNumTest/num.mod.o := gcc -Wp,-MD,/home/gzh/workspace/kernel_dev/majorDevNumTest/.num.mod.o.d  -nostdinc -isystem /usr/lib/gcc/i686-linux-gnu/4.6/include -I/home/gzh/kernel/linux-3.13.3/arch/x86/include -Iarch/x86/include/generated  -Iinclude -I/home/gzh/kernel/linux-3.13.3/arch/x86/include/uapi -Iarch/x86/include/generated/uapi -I/home/gzh/kernel/linux-3.13.3/include/uapi -Iinclude/generated/uapi -include /home/gzh/kernel/linux-3.13.3/include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -O2 -m32 -msoft-float -mregparm=3 -freg-struct-return -mno-mmx -mno-sse -fno-pic -mpreferred-stack-boundary=2 -march=i686 -mtune=generic -maccumulate-outgoing-args -Wa,-mtune=generic32 -ffreestanding -fstack-protector -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -Wframe-larger-than=1024 -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -g -pg -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -DCC_HAVE_ASM_GOTO  -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(num.mod)"  -D"KBUILD_MODNAME=KBUILD_STR(num)" -DMODULE  -c -o /home/gzh/workspace/kernel_dev/majorDevNumTest/num.mod.o /home/gzh/workspace/kernel_dev/majorDevNumTest/num.mod.c
+cmd_/home/gzh/workspace/kernel_dev/helloTest/hello.o := gcc -Wp,-MD,/home/gzh/workspace/kernel_dev/helloTest/.hello.o.d  -nostdinc -isystem /usr/lib/gcc/i686-linux-gnu/4.6/include -I/home/gzh/kernel/linux-3.13.3/arch/x86/include -Iarch/x86/include/generated  -Iinclude -I/home/gzh/kernel/linux-3.13.3/arch/x86/include/uapi -Iarch/x86/include/generated/uapi -I/home/gzh/kernel/linux-3.13.3/include/uapi -Iinclude/generated/uapi -include /home/gzh/kernel/linux-3.13.3/include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -O2 -m32 -msoft-float -mregparm=3 -freg-struct-return -mno-mmx -mno-sse -fno-pic -mpreferred-stack-boundary=2 -march=i686 -mtune=generic -maccumulate-outgoing-args -Wa,-mtune=generic32 -ffreestanding -fstack-protector -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -Wframe-larger-than=1024 -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -g -pg -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -DCC_HAVE_ASM_GOTO  -DMODULE  -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(hello)"  -D"KBUILD_MODNAME=KBUILD_STR(hello)" -c -o /home/gzh/workspace/kernel_dev/helloTest/.tmp_hello.o /home/gzh/workspace/kernel_dev/helloTest/hello.c
 
-source_/home/gzh/workspace/kernel_dev/majorDevNumTest/num.mod.o := /home/gzh/workspace/kernel_dev/majorDevNumTest/num.mod.c
+source_/home/gzh/workspace/kernel_dev/helloTest/hello.o := /home/gzh/workspace/kernel_dev/helloTest/hello.c
 
-deps_/home/gzh/workspace/kernel_dev/majorDevNumTest/num.mod.o := \
-    $(wildcard include/config/module/unload.h) \
-  include/linux/module.h \
-    $(wildcard include/config/sysfs.h) \
+deps_/home/gzh/workspace/kernel_dev/helloTest/hello.o := \
+  include/linux/init.h \
+    $(wildcard include/config/broken/rodata.h) \
     $(wildcard include/config/modules.h) \
-    $(wildcard include/config/unused/symbols.h) \
-    $(wildcard include/config/module/sig.h) \
-    $(wildcard include/config/generic/bug.h) \
-    $(wildcard include/config/kallsyms.h) \
-    $(wildcard include/config/smp.h) \
-    $(wildcard include/config/tracepoints.h) \
-    $(wildcard include/config/tracing.h) \
-    $(wildcard include/config/event/tracing.h) \
-    $(wildcard include/config/ftrace/mcount/record.h) \
-    $(wildcard include/config/constructors.h) \
-    $(wildcard include/config/debug/set/module/ronx.h) \
-  include/linux/list.h \
-    $(wildcard include/config/debug/list.h) \
+  include/linux/compiler.h \
+    $(wildcard include/config/sparse/rcu/pointer.h) \
+    $(wildcard include/config/trace/branch/profiling.h) \
+    $(wildcard include/config/profile/all/branches.h) \
+    $(wildcard include/config/enable/must/check.h) \
+    $(wildcard include/config/enable/warn/deprecated.h) \
+    $(wildcard include/config/kprobes.h) \
+  include/linux/compiler-gcc.h \
+    $(wildcard include/config/arch/supports/optimized/inlining.h) \
+    $(wildcard include/config/optimize/inlining.h) \
+  include/linux/compiler-gcc4.h \
+    $(wildcard include/config/arch/use/builtin/bswap.h) \
   include/linux/types.h \
     $(wildcard include/config/uid16.h) \
     $(wildcard include/config/lbdaf.h) \
@@ -37,22 +35,26 @@ deps_/home/gzh/workspace/kernel_dev/majorDevNumTest/num.mod.o := \
   /home/gzh/kernel/linux-3.13.3/include/uapi/linux/posix_types.h \
   include/linux/stddef.h \
   include/uapi/linux/stddef.h \
-  include/linux/compiler.h \
-    $(wildcard include/config/sparse/rcu/pointer.h) \
-    $(wildcard include/config/trace/branch/profiling.h) \
-    $(wildcard include/config/profile/all/branches.h) \
-    $(wildcard include/config/enable/must/check.h) \
-    $(wildcard include/config/enable/warn/deprecated.h) \
-    $(wildcard include/config/kprobes.h) \
-  include/linux/compiler-gcc.h \
-    $(wildcard include/config/arch/supports/optimized/inlining.h) \
-    $(wildcard include/config/optimize/inlining.h) \
-  include/linux/compiler-gcc4.h \
-    $(wildcard include/config/arch/use/builtin/bswap.h) \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/posix_types.h \
     $(wildcard include/config/x86/32.h) \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/uapi/asm/posix_types_32.h \
   /home/gzh/kernel/linux-3.13.3/include/uapi/asm-generic/posix_types.h \
+  include/linux/module.h \
+    $(wildcard include/config/sysfs.h) \
+    $(wildcard include/config/unused/symbols.h) \
+    $(wildcard include/config/module/sig.h) \
+    $(wildcard include/config/generic/bug.h) \
+    $(wildcard include/config/kallsyms.h) \
+    $(wildcard include/config/smp.h) \
+    $(wildcard include/config/tracepoints.h) \
+    $(wildcard include/config/tracing.h) \
+    $(wildcard include/config/event/tracing.h) \
+    $(wildcard include/config/ftrace/mcount/record.h) \
+    $(wildcard include/config/module/unload.h) \
+    $(wildcard include/config/constructors.h) \
+    $(wildcard include/config/debug/set/module/ronx.h) \
+  include/linux/list.h \
+    $(wildcard include/config/debug/list.h) \
   include/linux/poison.h \
     $(wildcard include/config/illegal/pointer/value.h) \
   /home/gzh/kernel/linux-3.13.3/include/uapi/linux/const.h \
@@ -102,8 +104,6 @@ deps_/home/gzh/workspace/kernel_dev/majorDevNumTest/num.mod.o := \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/processor-flags.h \
     $(wildcard include/config/vm86.h) \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/uapi/asm/processor-flags.h \
-  include/linux/init.h \
-    $(wildcard include/config/broken/rodata.h) \
   include/asm-generic/ptrace.h \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/cpufeature.h \
     $(wildcard include/config/x86/debug/static/cpu/has.h) \
@@ -538,9 +538,7 @@ deps_/home/gzh/workspace/kernel_dev/majorDevNumTest/num.mod.o := \
     $(wildcard include/config/have/mod/arch/specific.h) \
     $(wildcard include/config/modules/use/elf/rel.h) \
     $(wildcard include/config/modules/use/elf/rela.h) \
-  include/linux/vermagic.h \
-  include/generated/utsrelease.h \
 
-/home/gzh/workspace/kernel_dev/majorDevNumTest/num.mod.o: $(deps_/home/gzh/workspace/kernel_dev/majorDevNumTest/num.mod.o)
+/home/gzh/workspace/kernel_dev/helloTest/hello.o: $(deps_/home/gzh/workspace/kernel_dev/helloTest/hello.o)
 
-$(deps_/home/gzh/workspace/kernel_dev/majorDevNumTest/num.mod.o):
+$(deps_/home/gzh/workspace/kernel_dev/helloTest/hello.o):

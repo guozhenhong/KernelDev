@@ -1,0 +1,1 @@
+cmd_/home/gzh/workspace/kernel_dev/helloTest/hello.ko := ld -r -m elf_i386 -T /home/gzh/kernel/linux-3.13.3/scripts/module-common.lds --build-id  -o /home/gzh/workspace/kernel_dev/helloTest/hello.ko /home/gzh/workspace/kernel_dev/helloTest/hello.o /home/gzh/workspace/kernel_dev/helloTest/hello.mod.o

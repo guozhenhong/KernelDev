@@ -8,7 +8,7 @@
 MODULE_LICENSE("Dual BSD/GPL");
 
 static int major = 0;
-static int minor = 1;
+static int minor = 0;
 
 module_param(major, int, S_IRUGO | S_IWUSR);
 module_param(minor, int, S_IRUGO | S_IWUSR);

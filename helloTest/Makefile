@@ -1,5 +1,5 @@
 obj-m := hellop.o
-KERNELDIR := /lib/modules/3.5.0-23-generic/build
+KERNELDIR := /lib/modules/$(shell uname -r)/build
 PWD := $(shell pwd)
 
 modules:

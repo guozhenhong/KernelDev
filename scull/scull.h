@@ -3,8 +3,8 @@
 
 
 static int scull_major = 0;
-static int scull_minor = 1;
-static unsigned int scull_num = 1;
+static int scull_minor = 0;
+static unsigned int scull_num = 3;
 
 static int scull_quantum = 1000;
 static int scull_qset = 4;

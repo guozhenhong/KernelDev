@@ -1,7 +1,7 @@
 #!/bin/sh
 
-module="scull"
-device="gzhSCULL"
+module="num"
+device="gzhNUMTest"
 
 /sbin/rmmod $module $* || exit 1
 

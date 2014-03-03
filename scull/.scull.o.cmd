@@ -1,4 +1,4 @@
-cmd_/home/gzh/workspace/kernel_dev/scull/scull.o := gcc -Wp,-MD,/home/gzh/workspace/kernel_dev/scull/.scull.o.d  -nostdinc -isystem /usr/lib/gcc/i686-linux-gnu/4.6/include -I/home/gzh/kernel/linux-3.13.3/arch/x86/include -Iarch/x86/include/generated  -Iinclude -I/home/gzh/kernel/linux-3.13.3/arch/x86/include/uapi -Iarch/x86/include/generated/uapi -I/home/gzh/kernel/linux-3.13.3/include/uapi -Iinclude/generated/uapi -include /home/gzh/kernel/linux-3.13.3/include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -O2 -m64 -mno-mmx -mno-sse -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -Wframe-larger-than=1024 -fno-stack-protector -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -g -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -DCC_HAVE_ASM_GOTO  -DMODULE  -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(scull)"  -D"KBUILD_MODNAME=KBUILD_STR(scull)" -c -o /home/gzh/workspace/kernel_dev/scull/.tmp_scull.o /home/gzh/workspace/kernel_dev/scull/scull.c
+cmd_/home/gzh/workspace/kernel_dev/scull/scull.o := gcc -Wp,-MD,/home/gzh/workspace/kernel_dev/scull/.scull.o.d  -nostdinc -isystem /usr/lib/gcc/i686-linux-gnu/4.6/include -I/home/gzh/kernel/linux-3.13.3/arch/x86/include -Iarch/x86/include/generated  -Iinclude -I/home/gzh/kernel/linux-3.13.3/arch/x86/include/uapi -Iarch/x86/include/generated/uapi -I/home/gzh/kernel/linux-3.13.3/include/uapi -Iinclude/generated/uapi -include /home/gzh/kernel/linux-3.13.3/include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -O2 -m32 -msoft-float -mregparm=3 -freg-struct-return -mno-mmx -mno-sse -fno-pic -mpreferred-stack-boundary=2 -march=i686 -mtune=generic -maccumulate-outgoing-args -Wa,-mtune=generic32 -ffreestanding -fstack-protector -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -Wframe-larger-than=1024 -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -g -pg -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -DCC_HAVE_ASM_GOTO  -DMODULE  -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(scull)"  -D"KBUILD_MODNAME=KBUILD_STR(scull)" -c -o /home/gzh/workspace/kernel_dev/scull/.tmp_scull.o /home/gzh/workspace/kernel_dev/scull/scull.c
 
 source_/home/gzh/workspace/kernel_dev/scull/scull.o := /home/gzh/workspace/kernel_dev/scull/scull.c
 
@@ -51,7 +51,7 @@ deps_/home/gzh/workspace/kernel_dev/scull/scull.o := \
     $(wildcard include/config/arch/use/builtin/bswap.h) \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/posix_types.h \
     $(wildcard include/config/x86/32.h) \
-  /home/gzh/kernel/linux-3.13.3/arch/x86/include/uapi/asm/posix_types_64.h \
+  /home/gzh/kernel/linux-3.13.3/arch/x86/include/uapi/asm/posix_types_32.h \
   /home/gzh/kernel/linux-3.13.3/include/uapi/asm-generic/posix_types.h \
   include/linux/poison.h \
     $(wildcard include/config/illegal/pointer/value.h) \
@@ -89,14 +89,14 @@ deps_/home/gzh/workspace/kernel_dev/scull/scull.o := \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/segment.h \
     $(wildcard include/config/cc/stackprotector.h) \
     $(wildcard include/config/x86/32/lazy/gs.h) \
-  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/cache.h \
-    $(wildcard include/config/x86/l1/cache/shift.h) \
-    $(wildcard include/config/x86/internode/cache/shift.h) \
-    $(wildcard include/config/x86/vsmp.h) \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/page_types.h \
     $(wildcard include/config/physical/start.h) \
     $(wildcard include/config/physical/align.h) \
-  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/page_64_types.h \
+  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/page_32_types.h \
+    $(wildcard include/config/highmem4g.h) \
+    $(wildcard include/config/highmem64g.h) \
+    $(wildcard include/config/page/offset.h) \
+    $(wildcard include/config/x86/pae.h) \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/uapi/asm/ptrace.h \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/uapi/asm/ptrace-abi.h \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/processor-flags.h \
@@ -110,12 +110,12 @@ deps_/home/gzh/workspace/kernel_dev/scull/scull.o := \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/required-features.h \
     $(wildcard include/config/x86/minimum/cpu/family.h) \
     $(wildcard include/config/math/emulation.h) \
-    $(wildcard include/config/x86/pae.h) \
     $(wildcard include/config/x86/cmpxchg64.h) \
     $(wildcard include/config/x86/use/3dnow.h) \
     $(wildcard include/config/x86/p6/nop.h) \
     $(wildcard include/config/matom.h) \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/rmwcc.h \
+  include/asm-generic/bitops/fls64.h \
   include/asm-generic/bitops/find.h \
     $(wildcard include/config/generic/find/first/bit.h) \
   include/asm-generic/bitops/sched.h \
@@ -144,7 +144,7 @@ deps_/home/gzh/workspace/kernel_dev/scull/scull.o := \
     $(wildcard include/config/binary/printf.h) \
   include/uapi/linux/string.h \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/string.h \
-  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/string_64.h \
+  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/string_32.h \
     $(wildcard include/config/kmemcheck.h) \
   include/linux/errno.h \
   include/uapi/linux/errno.h \
@@ -153,6 +153,11 @@ deps_/home/gzh/workspace/kernel_dev/scull/scull.o := \
   /home/gzh/kernel/linux-3.13.3/include/uapi/asm-generic/errno-base.h \
   include/uapi/linux/kernel.h \
   /home/gzh/kernel/linux-3.13.3/include/uapi/linux/sysinfo.h \
+  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/div64.h \
+  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/cache.h \
+    $(wildcard include/config/x86/l1/cache/shift.h) \
+    $(wildcard include/config/x86/internode/cache/shift.h) \
+    $(wildcard include/config/x86/vsmp.h) \
   include/linux/seqlock.h \
     $(wildcard include/config/debug/lock/alloc.h) \
   include/linux/spinlock.h \
@@ -187,9 +192,11 @@ deps_/home/gzh/workspace/kernel_dev/scull/scull.o := \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/thread_info.h \
     $(wildcard include/config/ia32/emulation.h) \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/page.h \
-  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/page_64.h \
+  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/page_32.h \
+    $(wildcard include/config/hugetlb/page.h) \
     $(wildcard include/config/debug/virtual.h) \
     $(wildcard include/config/flatmem.h) \
+    $(wildcard include/config/x86/3dnow.h) \
   include/linux/range.h \
   include/asm-generic/memory_model.h \
     $(wildcard include/config/discontigmem.h) \
@@ -209,8 +216,10 @@ deps_/home/gzh/workspace/kernel_dev/scull/scull.o := \
     $(wildcard include/config/mem/soft/dirty.h) \
     $(wildcard include/config/compat/vdso.h) \
     $(wildcard include/config/proc/fs.h) \
-  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/pgtable_64_types.h \
-  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/sparsemem.h \
+  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/pgtable_32_types.h \
+    $(wildcard include/config/highmem.h) \
+  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/pgtable-3level_types.h \
+  include/asm-generic/pgtable-nopud.h \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/msr.h \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/uapi/asm/msr.h \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/uapi/asm/msr-index.h \
@@ -233,8 +242,6 @@ deps_/home/gzh/workspace/kernel_dev/scull/scull.o := \
   include/uapi/linux/personality.h \
   include/linux/math64.h \
     $(wildcard include/config/arch/supports/int128.h) \
-  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/div64.h \
-  include/asm-generic/div64.h \
   include/linux/err.h \
   include/linux/irqflags.h \
     $(wildcard include/config/trace/irqflags.h) \
@@ -246,8 +253,8 @@ deps_/home/gzh/workspace/kernel_dev/scull/scull.o := \
     $(wildcard include/config/generic/atomic64.h) \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/atomic.h \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/cmpxchg.h \
-  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/cmpxchg_64.h \
-  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/atomic64_64.h \
+  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/cmpxchg_32.h \
+  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/atomic64_32.h \
   include/asm-generic/atomic-long.h \
   include/linux/bottom_half.h \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/barrier.h \
@@ -306,7 +313,6 @@ deps_/home/gzh/workspace/kernel_dev/scull/scull.o := \
   include/linux/kmod.h \
   include/linux/gfp.h \
     $(wildcard include/config/numa.h) \
-    $(wildcard include/config/highmem.h) \
     $(wildcard include/config/zone/dma.h) \
     $(wildcard include/config/zone/dma32.h) \
     $(wildcard include/config/pm/sleep.h) \
@@ -338,7 +344,6 @@ deps_/home/gzh/workspace/kernel_dev/scull/scull.o := \
   include/linux/nodemask.h \
     $(wildcard include/config/movable/node.h) \
   include/linux/pageblock-flags.h \
-    $(wildcard include/config/hugetlb/page.h) \
     $(wildcard include/config/hugetlb/page/size/variable.h) \
   include/linux/page-flags-layout.h \
   include/generated/bounds.h \
@@ -449,6 +454,7 @@ deps_/home/gzh/workspace/kernel_dev/scull/scull.o := \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/topology.h \
     $(wildcard include/config/x86/ht.h) \
   include/asm-generic/topology.h \
+  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/numa_32.h \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/mmu.h \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/realmode.h \
     $(wildcard include/config/acpi/sleep.h) \
@@ -468,11 +474,10 @@ deps_/home/gzh/workspace/kernel_dev/scull/scull.o := \
     $(wildcard include/config/arch/clocksource/data.h) \
     $(wildcard include/config/clocksource/watchdog.h) \
     $(wildcard include/config/clksrc/of.h) \
-  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/clocksource.h \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/pvclock-abi.h \
-  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/vsyscall.h \
-  /home/gzh/kernel/linux-3.13.3/arch/x86/include/uapi/asm/vsyscall.h \
-  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/vvar.h \
+  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/kmap_types.h \
+    $(wildcard include/config/debug/highmem.h) \
+  include/asm-generic/kmap_types.h \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/idle.h \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/io_apic.h \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/irq_vectors.h \
@@ -489,9 +494,11 @@ deps_/home/gzh/workspace/kernel_dev/scull/scull.o := \
   include/linux/elf.h \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/elf.h \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/user.h \
-  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/user_64.h \
+  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/user_32.h \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/uapi/asm/auxvec.h \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/vdso.h \
+  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/desc.h \
+  /home/gzh/kernel/linux-3.13.3/arch/x86/include/uapi/asm/ldt.h \
   include/uapi/linux/elf.h \
   /home/gzh/kernel/linux-3.13.3/include/uapi/linux/elf-em.h \
   include/linux/kobject.h \
@@ -604,7 +611,7 @@ deps_/home/gzh/workspace/kernel_dev/scull/scull.o := \
     $(wildcard include/config/debug/strict/user/copy/checks.h) \
   /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/smap.h \
     $(wildcard include/config/x86/smap.h) \
-  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/uaccess_64.h \
+  /home/gzh/kernel/linux-3.13.3/arch/x86/include/asm/uaccess_32.h \
   /home/gzh/workspace/kernel_dev/scull/scull.h \
 
 /home/gzh/workspace/kernel_dev/scull/scull.o: $(deps_/home/gzh/workspace/kernel_dev/scull/scull.o)

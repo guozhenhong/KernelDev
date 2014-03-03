@@ -1,1 +1,1 @@
-cmd_/home/gzh/workspace/kernel_dev/scull/scull.ko := ld -r -m elf_x86_64 -T /home/gzh/kernel/linux-3.13.3/scripts/module-common.lds --build-id  -o /home/gzh/workspace/kernel_dev/scull/scull.ko /home/gzh/workspace/kernel_dev/scull/scull.o /home/gzh/workspace/kernel_dev/scull/scull.mod.o
+cmd_/home/gzh/workspace/kernel_dev/scull/scull.ko := ld -r -m elf_i386 -T /home/gzh/kernel/linux-3.13.3/scripts/module-common.lds --build-id  -o /home/gzh/workspace/kernel_dev/scull/scull.ko /home/gzh/workspace/kernel_dev/scull/scull.o /home/gzh/workspace/kernel_dev/scull/scull.mod.o
