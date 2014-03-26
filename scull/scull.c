@@ -10,8 +10,10 @@
 #include <linux/slab.h>
 #include <linux/fs.h>
 #include <linux/kernel.h>
+#include <linux/semaphore.h>
 #include <asm/uaccess.h>
-
+#include <linux/completion.h>
+#include <linux/sched.h>
 #include "scull.h"
 
 module_param(scull_major, int, S_IRUGO | S_IWUSR);
@@ -137,8 +139,12 @@ ssize_t scull_read(struct file *filp, char *buf, size_t count, loff_t *f_pos)
 	int offset = (int)(*f_pos);
 
 	ssize_t retval = 0;
-	// if(down_interruptible(&dev->sem))
-	// 	return -ERESTARTSYS;
+
+    printk(KERN_ALERT "Waiting for Write proccess! I am %i\n", (get_current())->pid);
+    wait_for_completion(&dev->comp);
+
+	if(down_interruptible(&dev->sem))
+	 	return -ERESTARTSYS;
 
 	printk(KERN_ALERT "In scull_read()\n");
 
@@ -172,7 +178,7 @@ ssize_t scull_read(struct file *filp, char *buf, size_t count, loff_t *f_pos)
 	retval = count;
 
 	out:
-		// up(&dev->sem);
+		up(&dev->sem);
 		return retval;
 }
 
@@ -193,9 +199,11 @@ ssize_t scull_write(struct file *filp, const char *buf, size_t count, loff_t *f_
 	int q_pos;
 
 	int offset = (int)*f_pos;
+    
+    printk(KERN_ALERT "I am Write proccess! I am %i\n", (get_current())->pid);
 
-	// if(down_interruptible(&dev->sem))
-	// 	return -ERESTARTSYS;
+	if(down_interruptible(&dev->sem))
+		return -ERESTARTSYS;
 
 	printk(KERN_ALERT "In scull_write()\n");
 
@@ -238,7 +246,8 @@ ssize_t scull_write(struct file *filp, const char *buf, size_t count, loff_t *f_
 		dev->size = *f_pos;
 
 	out:
-		// up(&dev->sem);
+		up(&dev->sem);
+        complete(&dev->comp);
 		return retval;
 }
 
@@ -297,12 +306,6 @@ static void scull_cleanup_module(void)
 {
 	int i;
 	dev_t dev = MKDEV(scull_major, scull_minor);
-	
-	// if(scull_devices != NULL)
-	// {
-	// 	printk(KERN_ALERT "In clean up !!!\n");
-	// 	kfree(scull_devices);		
-	// }
 
 	if(scull_devices != NULL){
 		printk(KERN_ALERT "In clean up !!!/n");
@@ -356,7 +359,8 @@ static int scull_init_module(void)
 	{
 		scull_devices[i].quantum = scull_quantum;
 		scull_devices[i].qset = scull_qset;
-
+        sema_init(&scull_devices[i].sem, 1);
+        init_completion(&scull_devices[i].comp);
 		scull_setup_cdev(&(scull_devices[i]), i);
 	}
 	
