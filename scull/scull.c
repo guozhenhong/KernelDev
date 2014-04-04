@@ -42,7 +42,8 @@ int scull_trim(struct scull_dev *dev)
 
 		if(set_ptr->data){
 			for(i = 0; i < qset; i ++){
-				kfree(set_ptr->data[i]);
+                if(set_ptr->data[i])
+				    kfree(set_ptr->data[i]);
 			}
 			kfree(set_ptr->data);
 			set_ptr->data = NULL;
@@ -306,7 +307,8 @@ static void scull_cleanup_module(void)
 {
 	int i;
 	dev_t dev = MKDEV(scull_major, scull_minor);
-
+	printk(KERN_ALERT "In clean up !!!/n");
+    
 	if(scull_devices != NULL){
 		printk(KERN_ALERT "In clean up !!!/n");
 			
