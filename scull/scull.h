@@ -23,7 +23,7 @@ struct scull_dev
 	unsigned long size;
 	unsigned int access_key;
 	struct semaphore sem;
-    struct completion comp;
+      struct completion comp;
 	struct cdev cdev;
 };
 

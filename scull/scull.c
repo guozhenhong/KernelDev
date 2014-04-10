@@ -14,7 +14,30 @@
 #include <asm/uaccess.h>
 #include <linux/completion.h>
 #include <linux/sched.h>
+#include <linux/ioctl.h>
+#include <linux/capability.h>
+
 #include "scull.h"
+
+#define SCULL_IOC_MAGIK 'k'
+
+#define SCULL_IOCRESET _IO(SCULL_IOC_MAGIK, 0)
+#define SCULL_IOCSQUANTUM _IOW(SCULL_IOC_MAGIK, 1, int)
+#define SCULL_IOCSQSET _IOW(SCULL_IOC_MAGIK, 2, int)
+#define SCULL_IOCTQUANTUM _IO(SCULL_IOC_MAGIK, 3)
+#define SCULL_IOCTQSET _IO(SCULL_IOC_MAGIK, 4)
+#define SCULL_IOCGQUANTUM _IOR(SCULL_IOC_MAGIK, 5, int)
+#define SCULL_IOCGQSET _IOR(SCULL_IOC_MAGIK, 6, int)
+#define SCULL_IOCQQUANTUM _IO(SCULL_IOC_MAGIK, 7)
+#define SCULL_IOCQQSET _IO(SCULL_IOC_MAGIK, 8)
+#define SCULL_IOCXQUANTUM _IOWR(SCULL_IOC_MAGIK, 9, int)
+#define SCULL_IOCXQSET _IOWR(SCULL_IOC_MAGIK, 10, int)
+#define SCULL_IOCHQUANTUM _IO(SCULL_IOC_MAGIK, 11)
+#define SCULL_IOCHQSET _IO(SCULL_IOC_MAGIK, 12)
+
+#define SCULL_IOC_MAXNR 14
+
+#define __DEBUG_INFO
 
 module_param(scull_major, int, S_IRUGO | S_IWUSR);
 module_param(scull_minor, int, S_IRUGO | S_IWUSR);
@@ -75,13 +98,19 @@ int scull_open(struct inode *inode, struct file *filp)
 	if((filp->f_flags & O_ACCMODE) == O_WRONLY){
 		scull_trim(dev);
 	}
+
+#ifdef __DEBUG_INFO
 	printk(KERN_ALERT "In scull_open()\n");
+#endif
+
 	return 0;
 }
 
 int scull_release(struct inode *inode, struct file *filp)
 {
+#ifdef __DEBUG_INFO
 	printk(KERN_ALERT "In scull_release()\n");
+#endif
 
 	return 0;
 }
@@ -95,7 +124,9 @@ struct scull_qset* scull_follow(struct scull_dev *dev, int index)
 	if(!dev)
 		return NULL;
 	
+#ifdef __DEBUG_INFO	
 	printk(KERN_ALERT "In scull_follow()\n");
+#endif
 
 	if(!(dev->data))
 	{
@@ -140,14 +171,19 @@ ssize_t scull_read(struct file *filp, char *buf, size_t count, loff_t *f_pos)
 	int offset = (int)(*f_pos);
 
 	ssize_t retval = 0;
-
+	
+#ifdef __DEBUG_INFO
     printk(KERN_ALERT "Waiting for Write proccess! I am %i\n", (get_current())->pid);
+#endif
+
     wait_for_completion(&dev->comp);
 
 	if(down_interruptible(&dev->sem))
 	 	return -ERESTARTSYS;
-
+	
+#ifdef __DEBUG_INFO
 	printk(KERN_ALERT "In scull_read()\n");
+#endif
 
 	if(offset >= dev->size)
 		goto out;
@@ -200,13 +236,17 @@ ssize_t scull_write(struct file *filp, const char *buf, size_t count, loff_t *f_
 	int q_pos;
 
 	int offset = (int)*f_pos;
-    
+
+#ifdef __DEBUG_INFO  
     printk(KERN_ALERT "I am Write proccess! I am %i\n", (get_current())->pid);
+#endif
 
 	if(down_interruptible(&dev->sem))
 		return -ERESTARTSYS;
-
+	
+#ifdef __DEBUG_INFO
 	printk(KERN_ALERT "In scull_write()\n");
+#endif
 
 	item = offset / itemsize;
 	rest = offset % itemsize;
@@ -278,12 +318,105 @@ loff_t scull_llseek(struct file *filp, loff_t off, int whence)
 	return newpos;
 }
 
+long scull_ioctl(struct file* filp, unsigned	int cmd, unsigned long arg)
+{
+	int err = 1, tmp;
+	int retval = 0;
+	
+#ifdef __DEBUG_INFO
+	printk(KERN_ALERT "In scull_ioctl, the cmd is %i\n", cmd);
+#endif
+
+	if(_IOC_TYPE(cmd)  != SCULL_IOC_MAGIK)
+	{	
+		printk(KERN_ALERT "ERROR 1\n");
+		return -ENOTTY;
+	}
+		
+
+	if(_IOC_NR(cmd) > SCULL_IOC_MAXNR)
+	{	
+		printk(KERN_ALERT "ERROR 2\n");
+		return -ENOTTY;
+	}
+	
+	if(_IOC_DIR(cmd) & _IOC_READ)
+		err = access_ok(VERIFY_READ, (void __user *)arg, _IOC_SIZE(cmd));
+	else if(_IOC_DIR(cmd) & _IOC_WRITE)
+		err = access_ok(VIRIFY_WRITE, (void __user*)arg, _IOC_SIZE(cmd));
+
+	if(!err)
+	{	
+		printk(KERN_ALERT "ERROR 3\n");
+		return -EFAULT;
+	}
+
+	switch(cmd)
+	{
+		case SCULL_IOCRESET:
+			scull_quantum = 1000;
+			scull_qset = 4;
+			break;
+			
+		case SCULL_IOCSQUANTUM:
+			if(!capable(CAP_SYS_ADMIN))
+				return -EPERM;
+			retval = __get_user(scull_quantum, (int __user*)arg);
+			break;
+			
+		case SCULL_IOCSQSET:
+			if(!capable(CAP_SYS_ADMIN))
+				return -EPERM;
+			retval = __get_user(scull_qset, (int __user*)arg);
+			break;
+			
+		case SCULL_IOCTQUANTUM:
+			if(!capable(CAP_SYS_ADMIN))
+				return -EPERM;
+			scull_quantum = arg;
+			break;
+			
+		case SCULL_IOCGQUANTUM:
+			if(!capable(CAP_SYS_ADMIN))
+				return -EPERM;
+			retval = __put_user(scull_quantum, (int __user*)arg);
+			break;
+			
+		case SCULL_IOCQQUANTUM:
+		//	if(!capable(CAP_SYS_ADMIN))
+			//	return -EPERM;
+			printk("In SCULL_IOCQQUANTUM, %d\n", scull_quantum);
+			return scull_quantum;
+			
+		case SCULL_IOCXQUANTUM:
+			if(!capable(CAP_SYS_ADMIN))
+				return -EPERM;
+			tmp= scull_quantum;
+			retval = __get_user(scull_quantum, (int __user*)arg);
+			if(retval == 0)
+				retval = __put_user(tmp, (int __user*)arg);
+			break;
+			
+		case SCULL_IOCHQUANTUM:
+			if(!capable(CAP_SYS_ADMIN))
+				return -EPERM;
+			tmp = scull_quantum;
+			scull_quantum = arg;
+			return tmp;
+
+		default:
+			return -ENOTTY;
+	}
+
+	return retval;
+}
+
 struct file_operations scull_fops = {
 	.owner = THIS_MODULE,
 	.llseek = scull_llseek,
 	.read = scull_read,
 	.write = scull_write,
-	// .ioctl = scull_ioctl,
+	.unlocked_ioctl = scull_ioctl,
 	.open = scull_open,
 	.release = scull_release,
 };
@@ -293,7 +426,9 @@ static void scull_setup_cdev(struct scull_dev *dev, int index)
 	int err;
 
 	int devno = MKDEV(scull_major, scull_minor + index);
+#ifdef __DEBUG_INFO
 	printk(KERN_ALERT "tht major is %d\n", scull_major);
+#endif
 	cdev_init(&(dev->cdev), &scull_fops);
 	dev->cdev.owner = THIS_MODULE;
 	dev->cdev.ops = &scull_fops;
@@ -307,8 +442,11 @@ static void scull_cleanup_module(void)
 {
 	int i;
 	dev_t dev = MKDEV(scull_major, scull_minor);
+	
+#ifdef __DEBUG_INFO
 	printk(KERN_ALERT "In clean up !!!/n");
-    
+ #endif
+   
 	if(scull_devices != NULL){
 		printk(KERN_ALERT "In clean up !!!/n");
 			
@@ -329,8 +467,10 @@ static int scull_init_module(void)
 	int res = 0;
 	dev_t dev;
 	int i;
-
-    printk(KERN_ALERT "In init!!!\n");
+	
+#ifdef __DEBUG_INFO
+     printk(KERN_ALERT "In init!!!\n");
+#endif
 
 	if(scull_major){
 		dev = MKDEV(scull_major, scull_minor);
